@@ -1,0 +1,4 @@
+# Pyransom
+This ransomware script is implement [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) and [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) cryptosystem to encrypt file.
+
+**PS** : This tool is only for testing and academic purposes and can only be used where strict consent has been given. Do not use it for illegal purposes! It is the end user’s responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this tool and software in general. Intelectual property in this project belong to [w3w3w3](https://github.com/ncorbuk), I just modify some code from his project for my personal research to understand how ransomware works. Code licensed by MIT with no warranty.
