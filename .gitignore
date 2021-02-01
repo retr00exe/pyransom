@@ -1,3 +1,5 @@
+.gitignore
 private.pem
 public.pem
-RANSOM_KEY.txt
+key.txt
+/Test
